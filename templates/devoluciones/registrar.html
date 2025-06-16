@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+  <h3>Registrar Devolución</h3>
+  <form method="POST">
+    <p><strong>Usuario:</strong> {{ prestamo.usuario }}</p>
+    <p><strong>Copia:</strong> {{ prestamo.copia.codigo_interno }}</p>
+    <div class="mb-3">
+      <label>Observación</label>
+      <textarea name="observacion" class="form-control"></textarea>
+    </div>
+    <button type="submit" class="btn btn-success">Registrar</button>
+    <a href="{{ url_for('prestamo_controller.index_prestamos') }}" class="btn btn-secondary">Cancelar</a>
+  </form>
+</div>
+{% endblock %}

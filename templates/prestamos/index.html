@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+  <h3>Préstamos Actuales</h3>
+  <a href="{{ url_for('prestamo_controller.crear_prestamo') }}" class="btn btn-success mb-3">Nuevo Préstamo</a>
+  <table class="table table-bordered">
+    <thead>
+      <tr><th>Código Copia</th><th>Usuario</th><th>Inicio</th><th>Devolución</th><th>Estado</th><th>Acción</th></tr>
+    </thead>
+    <tbody>
+      {% for p in prestamos %}
+      <tr>
+        <td>{{ p.copia.codigo_interno }}</td>
+        <td>{{ p.usuario }}</td>
+        <td>{{ p.fecha_prestamo }}</td>
+        <td>{{ p.fecha_devolucion }}</td>
+        <td>{{ p.estado }}</td>
+        <td>
+          {% if p.estado == 'activo' %}
+          <form method="POST" action="{{ url_for('prestamo_controller.devolver_prestamo', id=p.id) }}">
+            <button type="submit" class="btn btn-sm btn-warning">Devolver</button>
+          </form>
+          {% else %}<span class="text-success">Devuelto</span>{% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

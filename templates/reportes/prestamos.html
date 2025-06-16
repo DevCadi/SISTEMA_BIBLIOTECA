@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+  <h3>Generar Reportes</h3>
+  <a href="{{ url_for('reporte_controller.reporte_prestamos_pdf') }}" class="btn btn-danger">Reporte PDF</a>
+  <a href="{{ url_for('reporte_controller.reporte_prestamos_excel') }}" class="btn btn-success">Reporte Excel</a>
+</div>
+{% endblock %}

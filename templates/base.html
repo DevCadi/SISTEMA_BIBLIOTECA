@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Sistema Biblioteca UPEA</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{{ url_for('dashboard') }}">Biblioteca UPEA</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('usuario_controller.index_usuarios') }}">Usuarios</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('material_controller.index_materiales') }}">Materiales</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('copia_controller.index_copias') }}">Copias</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('prestamo_controller.index_prestamos') }}">Préstamos</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('devolucion_controller.index_devoluciones') }}">Devoluciones</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('reporte_controller.reporte_prestamos_pdf') }}">Reportes</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('auditoria_controller.index_auditoria') }}">Auditoría</a></li>
+        </ul>
+        <ul class="navbar-nav">
+          {% if session.get('usuario_id') %}
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('usuario_view.logout') }}">Cerrar sesión</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Flash messages -->
+  <div class="container mt-3">
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-info alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+  </div>
+
+  <!-- Content -->
+  {% block content %}{% endblock %}
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+  <h3>Registrar Préstamo</h3>
+  <form method="POST">
+    <div class="mb-3">
+      <label>Copia a prestar</label>
+      <select name="copia_id" class="form-control">
+        {% for c in copias %}
+        <option value="{{ c.id }}">{{ c.codigo_interno }} - {{ c.material.titulo }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="mb-3">
+      <label>Usuario</label>
+      <input type="text" name="usuario" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label>Fecha Préstamo</label>
+      <input type="date" name="fecha_prestamo" class="form-control" value="{{ today }}" required>
+    </div>
+    <div class="mb-3">
+      <label>Fecha Devolución</label>
+      <input type="date" name="fecha_devolucion" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-success">Registrar</button>
+    <a href="{{ url_for('prestamo_controller.index_prestamos') }}" class="btn btn-secondary">Cancelar</a>
+  </form>
+</div>
+{% endblock %}
