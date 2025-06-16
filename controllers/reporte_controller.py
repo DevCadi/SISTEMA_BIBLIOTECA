@@ -6,9 +6,9 @@ from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 from datetime import datetime
 
-reporte_controller = Blueprint('reporte_controller', __name__)
+reporte_bp = Blueprint('reporte_controller', __name__)
 
-@reporte_controller.route('/reportes/prestamos/pdf')
+@reporte_bp.route('/reportes/prestamos/pdf')
 def reporte_prestamos_pdf():
     buffer = BytesIO()
     p = canvas.Canvas(buffer, pagesize=letter)
@@ -31,7 +31,7 @@ def reporte_prestamos_pdf():
     buffer.seek(0)
     return send_file(buffer, as_attachment=True, download_name='prestamos.pdf', mimetype='application/pdf')
 
-@reporte_controller.route('/reportes/prestamos/excel')
+@reporte_bp.route('/reportes/prestamos/excel')
 def reporte_prestamos_excel():
     buffer = BytesIO()
     workbook = Workbook(buffer)

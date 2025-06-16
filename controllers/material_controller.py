@@ -2,14 +2,14 @@ from flask import Blueprint, render_template, request, redirect, url_for, flash
 from models.material_model import Material
 from database import db
 
-material_controller = Blueprint('material_controller', __name__)
+material_bp = Blueprint('material_controller', __name__)
 
-@material_controller.route('/materiales')
+@material_bp.route('/materiales')
 def index_materiales():
     materiales = Material.query.all()
     return render_template('materiales/index.html', materiales=materiales)
 
-@material_controller.route('/materiales/crear', methods=['GET', 'POST'])
+@material_bp.route('/materiales/crear', methods=['GET', 'POST'])
 def crear_material():
     if request.method == 'POST':
         nuevo = Material(
@@ -29,7 +29,7 @@ def crear_material():
         return redirect(url_for('material_controller.index_materiales'))
     return render_template('materiales/create.html')
 
-@material_controller.route('/materiales/editar/<int:id>', methods=['GET', 'POST'])
+@material_bp.route('/materiales/editar/<int:id>', methods=['GET', 'POST'])
 def editar_material(id):
     material = Material.query.get_or_404(id)
     if request.method == 'POST':

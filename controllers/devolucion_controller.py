@@ -5,14 +5,14 @@ from models.copia_model import Copia
 from database import db
 from datetime import datetime
 
-devolucion_controller = Blueprint('devolucion_controller', __name__)
+devolucion_bp = Blueprint('devolucion_controller', __name__)
 
-@devolucion_controller.route('/devoluciones')
+@devolucion_bp.route('/devoluciones')
 def index_devoluciones():
     devoluciones = Devolucion.query.all()
     return render_template('devoluciones/index.html', devoluciones=devoluciones)
 
-@devolucion_controller.route('/devoluciones/registrar/<int:prestamo_id>', methods=['GET', 'POST'])
+@devolucion_bp.route('/devoluciones/registrar/<int:prestamo_id>', methods=['GET', 'POST'])
 def registrar_devolucion(prestamo_id):
     prestamo = Prestamo.query.get_or_404(prestamo_id)
     if request.method == 'POST':

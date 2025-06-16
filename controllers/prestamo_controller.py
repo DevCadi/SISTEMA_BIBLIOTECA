@@ -4,14 +4,14 @@ from models.copia_model import Copia
 from database import db
 from datetime import datetime, timedelta
 
-prestamo_controller = Blueprint('prestamo_controller', __name__)
+prestamo_bp = Blueprint('prestamo_controller', __name__)
 
-@prestamo_controller.route('/prestamos')
+@prestamo_bp.route('/prestamos')
 def index_prestamos():
     prestamos = Prestamo.query.all()
     return render_template('prestamos/index.html', prestamos=prestamos)
 
-@prestamo_controller.route('/prestamos/crear', methods=['GET', 'POST'])
+@prestamo_bp.route('/prestamos/crear', methods=['GET', 'POST'])
 def crear_prestamo():
     copias = Copia.query.filter_by(estado='disponible').all()
     if request.method == 'POST':
@@ -30,7 +30,7 @@ def crear_prestamo():
         return redirect(url_for('prestamo_controller.index_prestamos'))
     return render_template('prestamos/create.html', copias=copias)
 
-@prestamo_controller.route('/prestamos/devolver/<int:id>', methods=['POST'])
+@prestamo_bp.route('/prestamos/devolver/<int:id>', methods=['POST'])
 def devolver_prestamo(id):
     prestamo = Prestamo.query.get_or_404(id)
     prestamo.estado = 'devuelto'

@@ -3,14 +3,14 @@ from models.copia_model import Copia
 from models.material_model import Material
 from database import db
 
-copia_controller = Blueprint('copia_controller', __name__)
+copia_bp = Blueprint('copia_controller', __name__)
 
-@copia_controller.route('/copias')
+@copia_bp.route('/copias')
 def index_copias():
     copias = Copia.query.all()
     return render_template('copias/index.html', copias=copias)
 
-@copia_controller.route('/copias/crear', methods=['GET', 'POST'])
+@copia_bp.route('/copias/crear', methods=['GET', 'POST'])
 def crear_copia():
     materiales = Material.query.all()
     if request.method == 'POST':
@@ -26,7 +26,7 @@ def crear_copia():
         return redirect(url_for('copia_controller.index_copias'))
     return render_template('copias/create.html', materiales=materiales)
 
-@copia_controller.route('/copias/editar/<int:id>', methods=['GET', 'POST'])
+@copia_bp.route('/copias/editar/<int:id>', methods=['GET', 'POST'])
 def editar_copia(id):
     copia = Copia.query.get_or_404(id)
     materiales = Material.query.all()

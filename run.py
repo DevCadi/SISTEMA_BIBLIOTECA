@@ -1,11 +1,5 @@
 from flask import Flask, redirect, url_for, session, render_template
-from views.usuario_view import usuario_view
-from views.material_view import material_view
-from views.copia_view import copia_view
-from views.prestamo_view import prestamo_view
-from views.reporte_view import reporte_view
-from views.auditoria_view import auditoria_view
-from views.devolucion_view import devolucion_view
+from controllers import usuario_controller, reporte_controller, prestamo_controller, material_controller, devolucion_controller, copia_controller, auditoria_controller
 from models.material_model import Material
 from models.copia_model import Copia
 from models.prestamo_model import Prestamo
@@ -14,19 +8,19 @@ from database import db
 
 app = Flask(__name__)
 app.secret_key = 'clave_secreta_para_sesiones'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///instance/biblioteca.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///biblioteca.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db.init_app(app)
 
 # Registrar blueprints
-app.register_blueprint(usuario_view)
-app.register_blueprint(material_view)
-app.register_blueprint(copia_view)
-app.register_blueprint(prestamo_view)
-app.register_blueprint(reporte_view)
-app.register_blueprint(devolucion_view)
-app.register_blueprint(auditoria_view)
+app.register_blueprint(usuario_controller.usuario_bp)
+app.register_blueprint(material_controller.material_bp)
+app.register_blueprint(copia_controller.copia_bp)
+app.register_blueprint(prestamo_controller.prestamo_bp)
+app.register_blueprint(reporte_controller.reporte_bp)
+app.register_blueprint(devolucion_controller.devolucion_bp)
+app.register_blueprint(auditoria_controller.auditoria_bp)
 
 @app.route('/')
 def home():
