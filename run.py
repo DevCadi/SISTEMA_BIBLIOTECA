@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for, session
+from flask import Flask, redirect, url_for, session, render_template
 from views.usuario_view import usuario_view
 from views.material_view import material_view
 from views.copia_view import copia_view
@@ -6,6 +6,10 @@ from views.prestamo_view import prestamo_view
 from views.reporte_view import reporte_view
 from views.auditoria_view import auditoria_view
 from views.devolucion_view import devolucion_view
+from models.material_model import Material
+from models.copia_model import Copia
+from models.prestamo_model import Prestamo
+from models.usuario_model import Usuario
 from database import db
 
 app = Flask(__name__)
