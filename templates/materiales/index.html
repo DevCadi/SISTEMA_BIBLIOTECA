@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+  <h3>Copias de Material</h3>
+  <a href="{{ url_for('copia_controller.crear_copia') }}" class="btn btn-success mb-3">Registrar Copia</a>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Código Interno</th>
+        <th>Material</th>
+        <th>Estado</th>
+        <th>Ubicación</th>
+        <th>Opciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for copia in copias %}
+      <tr>
+        <td>{{ copia.codigo_interno }}</td>
+        <td>{{ copia.material.titulo }}</td>
+        <td>{{ copia.estado }}</td>
+        <td>{{ copia.ubicacion }}</td>
+        <td>
+          <a href="{{ url_for('copia_controller.editar_copia', id=copia.id) }}" class="btn btn-sm btn-primary">Editar</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
