@@ -1,41 +1,37 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="container mt-4">
-  <h2>Panel de Estadísticas</h2>
-  <div class="row mt-3">
+<div class="container mt-5">
+  <h2 class="mb-4 text-center">Bienvenido al Sistema de Biblioteca</h2>
+  <div class="row text-center">
     <div class="col-md-3">
-      <div class="card text-white bg-primary mb-3">
-        <div class="card-header">Materiales</div>
+      <div class="card border-primary">
         <div class="card-body">
-          <h5 class="card-title">{{ total_materiales }}</h5>
-          <p class="card-text">Total registrados</p>
+          <h5 class="card-title">Materiales</h5>
+          <p class="display-6">{{ total_materiales }}</p>
         </div>
       </div>
     </div>
     <div class="col-md-3">
-      <div class="card text-white bg-success mb-3">
-        <div class="card-header">Copias Disponibles</div>
+      <div class="card border-success">
         <div class="card-body">
-          <h5 class="card-title">{{ copias_disponibles }}</h5>
-          <p class="card-text">Listas para préstamo</p>
+          <h5 class="card-title">Copias Disponibles</h5>
+          <p class="display-6">{{ copias_disponibles }}</p>
         </div>
       </div>
     </div>
     <div class="col-md-3">
-      <div class="card text-white bg-warning mb-3">
-        <div class="card-header">Préstamos Activos</div>
+      <div class="card border-warning">
         <div class="card-body">
-          <h5 class="card-title">{{ prestamos_activos }}</h5>
-          <p class="card-text">En curso</p>
+          <h5 class="card-title">Préstamos Activos</h5>
+          <p class="display-6">{{ prestamos_activos }}</p>
         </div>
       </div>
     </div>
     <div class="col-md-3">
-      <div class="card text-white bg-info mb-3">
-        <div class="card-header">Usuarios</div>
+      <div class="card border-info">
         <div class="card-body">
-          <h5 class="card-title">{{ total_usuarios }}</h5>
-          <p class="card-text">Registrados en el sistema</p>
+          <h5 class="card-title">Usuarios</h5>
+          <p class="display-6">{{ total_usuarios }}</p>
         </div>
       </div>
     </div>
