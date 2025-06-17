@@ -1,5 +1,10 @@
-from flask import Blueprint
-from controllers.material_controller import material_controller
+from flask import render_template
 
-material_view = Blueprint('material_view', __name__)
-material_view.register_blueprint(material_controller)
+def list(materiales):
+    return render_template('materiales/index.html', materiales=materiales)
+
+def create():
+    return render_template('materiales/create.html')
+
+def edit(material):
+    return render_template('materiales/edit.html', material=material)
