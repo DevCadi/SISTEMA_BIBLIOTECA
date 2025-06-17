@@ -2,6 +2,8 @@ from database import db
 from werkzeug.security import generate_password_hash, check_password_hash
     
 class Usuario(db.Model):
+    __tablename__= "usuario"
+    
     id_usuario  = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(100))
     apellido = db.Column(db.String(150))
