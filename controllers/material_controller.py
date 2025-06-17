@@ -1,15 +1,16 @@
-from flask import Blueprint, render_template, request, redirect, url_for, flash
+from flask import Blueprint, render_template, request, redirect, url_for
+
 from models.material_model import Material
-from database import db
+from views import material_view
 
-material_bp = Blueprint('material_controller', __name__)
+material_bp = Blueprint('material', __name__, url_prefix="/materiales")
 
-@material_bp.route('/materiales')
-def index_materiales():
+@material_bp.route('/')
+def index():
     materiales = Material.query.all()
-    return render_template('materiales/index.html', materiales=materiales)
+    return material_view.list(materiales)
 
-@material_bp.route('/materiales/crear', methods=['GET', 'POST'])
+@material_bp.route('/create', methods=['GET', 'POST'])
 def crear_material():
     if request.method == 'POST':
         nuevo = Material(
